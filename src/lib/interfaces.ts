@@ -1,12 +1,15 @@
 
-interface IUser  {
-    user_id: number,
-    email: string,
+interface IADUser {
+    userPrincipalName: string,
+    sAMAccountName: string,
+    displayName: string,
+    givenName: string,
+    sn: string,
+    employeeID: string,
+    dn: string,
 }
 interface ISession {
     guid_id: string,
-    // status
-    // exp date...
 }
 
-export type {IUser, ISession}
+export type {IADUser, ISession}

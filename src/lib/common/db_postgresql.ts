@@ -11,13 +11,11 @@ const PostgreSQL = () => {
         checkConnection: async (): Promise<PoolClient> => {
             return await (await DBInstance.getInstance()).getContext()
         },
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         query: async (sql: string, params: any[] = []): Promise<any> => {
             const dbContext = await (await DBInstance.getInstance()).getContext();
             if(dbContext){
 
                 try{ 
-                    //console.log(sql, params);
                     const res = await dbContext.query(sql, params);
                     return res;
                 } catch (err) {

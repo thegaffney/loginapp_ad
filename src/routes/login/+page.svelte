@@ -9,17 +9,15 @@
 
 <div class="flex flex-wrap lg:flex-nowrap">
     <!-- Side bar (desktop) top bar (mobile) -->
-    <div class="bg-zinc-600 h-12 lg:h-svh w-full lg:w-[calc(66vw)] px-4 py-2
-        flex lg:items-center lg:justify-end ">
+    <div class="bg-zinc-600 h-12 lg:h-svh w-full lg:w-[calc(66vw)] px-4 py-2 flex lg:items-center lg:justify-end ">
         <img src="/SlateDevLogo.png" alt="Slate Dev Logo" class=" max-w-48"/>
     </div>
     <!-- Main window -->
-    <div class="h-[calc(100vh-48px)] lg:h-svh w-full p-4
-        bg-[url('/home-office.png')] bg-no-repeat bg-center bg-cover
-        flex lg:justify-center lg:items-start flex-col items-center
+    <div class="h-[calc(100vh-48px)] lg:h-svh w-full p-4 bg-[url('/home-office.png')] bg-no-repeat bg-center bg-cover flex lg:justify-center lg:items-start flex-col items-center
         ">
         <!-- Login box -->
         <form action="?/login" method="post" use:enhance={()=>{
+
             loader.show = true
 
             return async ({result}) => {
@@ -32,7 +30,6 @@
                 } else {
                     // show an error
                     const errorText = (result.type === 'error' ? result.error.message : result.data?.message)
-                   
                     toast.text = errorText
                     toast.color = 'red'
                     loader.show = false

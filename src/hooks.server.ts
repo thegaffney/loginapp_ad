@@ -2,7 +2,7 @@
 // this file runs on EVERY request
 
 import PostgreSQL from '$lib/common/db_postgresql'
-import type { IUser } from '$lib/interfaces'
+import type { IADUser } from '$lib/interfaces'
 import { json, redirect, type ActionResult } from '@sveltejs/kit'
 
 export async function handle({event, resolve}) {
@@ -12,14 +12,11 @@ export async function handle({event, resolve}) {
     const sessionGUID = event.cookies.get('svelte_app_session')
     if(sessionGUID){
         // get user from DB using session
-        const sql = `select session.user_id, users.email, session.date_expired
-        from data.session
-        inner join data.users on users.user_id = session.user_id
-        where session.guid_id = $1
+        const sql = `select ad_user, date_expired from data.session where guid_id = $1
         `
         const resp = await PostgreSQL().query(sql, [sessionGUID])
         if(resp.rowCount && resp.rows[0].date_expired > Date.now()){
-            const user: IUser = {...resp.rows[0]}
+            const user: IADUser = {...resp.rows[0].ad_user}
             // Set the locals!
             event.locals.user = user
         }
