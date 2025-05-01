@@ -8,8 +8,5 @@ interface IADUser {
     employeeID: string,
     dn: string,
 }
-interface ISession {
-    guid_id: string,
-}
 
-export type {IADUser, ISession}
+export type {IADUser}

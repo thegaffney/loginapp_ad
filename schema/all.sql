@@ -2,7 +2,7 @@
 
 CREATE SCHEMA IF NOT EXISTS data AUTHORIZATION slate_apps;
 
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp"; -- For GUID genration
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp"; -- For GUID generation
 
 -- For tracking cookies
 CREATE TABLE data.session (
